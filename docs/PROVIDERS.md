@@ -25,6 +25,34 @@ The rule for the directory: a feed plays inside SIGNALWATCH only when its operat
 
 SIGNALWATCH does not use the site's "who's talking" WebSocket (`status.durhampolicescanner.com`); nothing on the page offers it for outside use.
 
+### WA Radio Scanner Users' Group (WARSUG) — plays in SIGNALWATCH
+
+| | |
+|---|---|
+| Provider | Volunteer scanner hobbyist group, Western Australia. Streams run by the forum administrator (Gavin Rogers, VK6HGR). |
+| Stations | Perth Fire and Rescue Dispatch (`https://stream.warsug.info/WARSUG`); Perth DFES Fireground Channels (`https://stream.warsug.info/DFES`) |
+| Coverage | Department of Fire and Emergency Services (DFES), Perth. Dispatch: "Metro Network Control Channel (6AR/6IP) for Fire and Rescue. All fire & rescue and SES turnouts in the metro and greater south-west are on this channel." Fireground: "major Department of Fire and Emergency Services repeater and simplex channels in the Perth metropolitan area". Fire only; no police. |
+| Source page | https://warsug.info/viewtopic.php?f=3&t=5454 |
+| Playback | Direct, native audio element, MP3 over HTTPS |
+| Basis for integration | The operator's post gives each address under "To listen :" and adds playlist addresses "for older software", and notes the streams are also mirrored to Broadcastify and usable in mobile apps. SIGNALWATCH uses the operator's own addresses, not the Broadcastify mirror. |
+| Attribution | None stated. SIGNALWATCH credits "Audio: WARSUG (warsug.info)" and links the source post. |
+| Restrictions | None stated. No credentials or payment. The operator accepts donations for site and stream costs. |
+| Delay | None documented. |
+
+**Open item before a public launch:** same as Durham. The addresses are published for listeners' own players; a third-party website is not mentioned. Ask through the forum before promoting the site.
+
+### Bay County Scanner Feed — link to the operator's player
+
+| | |
+|---|---|
+| Provider | Independently operated since 2005; "not affiliated with, endorsed by, or operated by any police department, fire department, emergency service, or government agency" |
+| Coverage | Local public safety communications, Bay City and Bay County, Michigan |
+| Source page | https://www.baycountyscanner.org/ |
+| Playback | External link only |
+| Why not in-app | Terms of Use (last updated 2026-11-09), section 2: "Permission to share website content does not automatically grant permission to reproduce, redistribute, rebroadcast, sell, or commercially exploit our live audio feed or archived scanner recordings. If you have a question about using or reproducing any of our material, please contact us before doing so." Its stream is technically reachable over HTTPS with open CORS, but that is not permission. |
+
+To play it in-app, ask through https://www.baycountyscanner.org/contact.
+
 ### Loudoun County Emergency Communications Center — link to the county's player
 
 | | |
@@ -58,6 +86,8 @@ To play it in-app, get written permission from SomaFM (https://somafm.com/contac
 | Broadcastify | Its site refuses automated access, so its terms could not be read first-hand from this build environment. Its help centre (as returned by web search) says public redistribution of live audio is prohibited under the developer programme terms (§4.B), that programme access needs an application and review at https://bcfy.io/dev/apply/, and that a broad public scanner product needs an enterprise licence. A feed-provider forum post reports the embeddable player was retired. Not integrated. |
 | OpenMHz | Site refuses automated access; no published terms for third-party players were found. Carries recorded calls, not a continuous stream. |
 | 916scanner.com, ScanCBUS | Proprietary web apps with accounts or paid plans; no stream published for outside players. |
+| Radio Browser (radio-browser.info) | Free community directory with an open API. Checked 2026-11-12: 157 entries matched scanner, police, fire, EMS and dispatch searches; about five were real scanner feeds and the rest were music stations. A listing there is not permission, so each operator was vetted separately (WARSUG and Bay County above). Not a bulk source. |
+| ScanBC (scanbc.com) | Streams play only through its own web app; no terms or stream addresses are published for outside players. |
 | CrimeIsDown.com | All rights reserved; distributes through YouTube, OpenMHz and Broadcastify. |
 | Pottawattamie County Sheriff (Iowa) | Official streams exist, but the page refused access from the build environment and could not be reviewed. |
 
@@ -79,4 +109,4 @@ This is the route to a large directory. It needs things only the site owner can 
 ## Verification record
 
 2026-11-12, headless Chromium, stream `https://stream.durhampolicescanner.com/`:
-response `content-type: audio/mp3`; the audio element fired `playing` 6.9 s after connecting; `currentTime` advanced 19.98 s over a 20 s sample; decoded samples through a Web Audio analyser had peak amplitude 0.24 with 59.8% of samples above the noise floor. This is machine evidence of decoded, non-silent audio. Nobody listened to it by ear in the build environment.
+response `content-type: audio/mp3`; the audio element fired `playing` 6.9 s after connecting; `currentTime` advanced 19.98 s over a 20 s sample; decoded samples through a Web Audio analyser had peak amplitude 0.24 with 59.8% of samples above the noise floor. Both WARSUG streams fired `playing` within 3.2 s and advanced 9.95 s over a 10 s sample. This is machine evidence of decoded audio (non-silent, in Durham's case). Nobody listened to it by ear in the build environment.

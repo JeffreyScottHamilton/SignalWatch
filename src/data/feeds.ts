@@ -16,6 +16,22 @@ export const PROVIDERS: Provider[] = [
     attribution: 'Audio: durhampolicescanner.com',
   },
   {
+    id: 'warsug',
+    name: 'WA Radio Scanner Users’ Group',
+    homepage: 'https://warsug.info/viewtopic.php?f=3&t=5454',
+    description:
+      'A volunteer scanner hobbyist group in Western Australia. Its forum administrator runs the streams and publishes their addresses for listening.',
+    attribution: 'Audio: WARSUG (warsug.info)',
+  },
+  {
+    id: 'bay-county-scanner',
+    name: 'Bay County Scanner Feed',
+    homepage: 'https://www.baycountyscanner.org/',
+    description:
+      'An independently operated scanner feed for Bay City and Bay County, Michigan, online since 2005. Its terms ask for permission before its live audio is reused, so SIGNALWATCH sends you to its own player.',
+    attribution: 'Feed: baycountyscanner.org',
+  },
+  {
     id: 'loudoun-county-ecc',
     name: 'Loudoun County Emergency Communications Center',
     homepage: 'https://www.loudoun.gov/724/Radio-Dispatch-Webcast',
@@ -52,6 +68,50 @@ export const FEEDS: Feed[] = [
     delayNote: null,
     coverageNote:
       'Public safety and operations talkgroups on the Durham County trunked P25 radio system: police, fire, EMS dispatch and other municipal functions.',
+    availability: { status: 'unknown', checkedAt: null },
+  },
+  {
+    id: 'perth-wa-fire-dispatch',
+    providerId: 'warsug',
+    name: 'Perth Fire and Rescue Dispatch',
+    city: 'Perth',
+    region: 'Western Australia',
+    country: 'AU',
+    services: ['fire'],
+    sourceUrl: 'https://warsug.info/viewtopic.php?f=3&t=5454',
+    playback: { method: 'direct', url: 'https://stream.warsug.info/WARSUG', mimeType: 'audio/mpeg' },
+    delayNote: null,
+    coverageNote:
+      'The Department of Fire and Emergency Services metro network control channel: fire and rescue and SES turnouts for Perth and the greater south-west.',
+    availability: { status: 'unknown', checkedAt: null },
+  },
+  {
+    id: 'perth-wa-dfes-fireground',
+    providerId: 'warsug',
+    name: 'Perth DFES Fireground Channels',
+    city: 'Perth',
+    region: 'Western Australia',
+    country: 'AU',
+    services: ['fire'],
+    sourceUrl: 'https://warsug.info/viewtopic.php?f=3&t=5454',
+    playback: { method: 'direct', url: 'https://stream.warsug.info/DFES', mimeType: 'audio/mpeg' },
+    delayNote: null,
+    coverageNote:
+      'Department of Fire and Emergency Services repeater and simplex channels in the Perth metropolitan area, UHF on the right channel and VHF on the left. Simplex channels can be noisy.',
+    availability: { status: 'unknown', checkedAt: null },
+  },
+  {
+    id: 'bay-county-mi-public-safety',
+    providerId: 'bay-county-scanner',
+    name: 'Bay County Scanner',
+    city: 'Bay City',
+    region: 'Michigan',
+    country: 'US',
+    services: ['police', 'fire'],
+    sourceUrl: 'https://www.baycountyscanner.org/',
+    playback: { method: 'external', url: 'https://www.baycountyscanner.org/' },
+    delayNote: null,
+    coverageNote: 'Local public safety communications for Bay City and Bay County, Michigan.',
     availability: { status: 'unknown', checkedAt: null },
   },
   {

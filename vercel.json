@@ -12,7 +12,7 @@
         { "key": "X-Frame-Options", "value": "DENY" },
         {
           "key": "Content-Security-Policy",
-          "value": "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; media-src https://stream.durhampolicescanner.com; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'none'"
+          "value": "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; media-src https://stream.durhampolicescanner.com https://stream.warsug.info; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'none'"
         }
       ]
     },
