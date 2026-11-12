@@ -1,4 +1,4 @@
-import type { CSSProperties } from 'react';
+import { useRef, type CSSProperties } from 'react';
 import type { Feed, PlaybackState, Provider } from '../types';
 import { formatLocation, formatServices } from '../lib/search';
 import { ExternalIcon, PlayIcon, SpeakerIcon, StarIcon, StopIcon, SwapIcon } from './icons';
@@ -35,6 +35,12 @@ export function RadioConsole({
   const active = !external && isAudioActive(state);
   const volumePercent = Math.round(state.volume * 100);
   const shownPercent = state.muted ? 0 : volumePercent;
+  const playButtonRef = useRef<HTMLButtonElement>(null);
+  // Retry unmounts itself once reconnecting starts; keep keyboard focus in the console.
+  const handleRetry = () => {
+    onRetry();
+    playButtonRef.current?.focus();
+  };
 
   return (
     <section className="console" aria-label="Radio">
@@ -75,6 +81,7 @@ export function RadioConsole({
             </a>
           ) : (
             <button
+              ref={playButtonRef}
               type="button"
               className="play-button"
               onClick={onPlayToggle}
@@ -92,7 +99,7 @@ export function RadioConsole({
             <p className="console__title">{copy.title}</p>
             <p className="console__helper">{copy.helper}</p>
             {!external && state.status === 'error' && (state.error === 'network' || state.error === null) && (
-              <button type="button" className="console-button console-button--small" onClick={onRetry}>
+              <button type="button" className="console-button console-button--small" onClick={handleRetry}>
                 Retry
               </button>
             )}
@@ -105,7 +112,7 @@ export function RadioConsole({
               type="button"
               className="volume__mute"
               onClick={onMuteToggle}
-              aria-label={state.muted ? 'Unmute' : 'Mute'}
+              aria-label="Mute"
               aria-pressed={state.muted}
             >
               <SpeakerIcon muted={state.muted} />
@@ -123,7 +130,6 @@ export function RadioConsole({
                   max={100}
                   step={1}
                   value={shownPercent}
-                  aria-label="Volume"
                   style={{ '--fill': `${shownPercent}%` } as CSSProperties}
                   onChange={(event) => onVolumeChange(Number(event.target.value) / 100)}
                 />

@@ -205,7 +205,9 @@ describe('playback controller', () => {
     expect(controller.getState().status).toBe('buffering');
     audio().fire('playing');
     expect(controller.getState().status).toBe('playing');
-    audio().fire('stalled');
+    audio().fire('stalled'); // fires on healthy quiet streams: must not count as starvation
+    expect(controller.getState().status).toBe('playing');
+    audio().fire('waiting');
     expect(controller.getState().status).toBe('buffering');
     await vi.advanceTimersByTimeAsync(20_000);
     expect(controller.getState()).toMatchObject({ status: 'connecting', retryAttempt: 1 });

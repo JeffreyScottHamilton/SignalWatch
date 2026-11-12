@@ -52,7 +52,8 @@ export function createPlaybackController(options: PlaybackControllerOptions = {}
   let generation = 0;
   /** True only while a stream is loaded in the element; gates late element events. */
   let connected = false;
-  /** Set around our own audio.pause() so its pause event is not read as an OS interruption. */
+  /** Covers a synchronously dispatched pause event; in browsers the event is async and the
+   *  `connected` and status checks in the pause handler are what reject it. */
   let internalPause = false;
   let hasPlayed = false;
   let retryCount = 0;
@@ -161,7 +162,8 @@ export function createPlaybackController(options: PlaybackControllerOptions = {}
       if (state.status === 'playing' || state.status === 'buffering') pause();
     },
   };
-  handlers.stalled = handlers.waiting;
+  // `stalled` is deliberately not handled: browsers fire it during quiet stretches of a
+  // healthy live stream, and treating it as starvation would tear down working audio.
 
   function ensureAudio(): HTMLAudioElement {
     if (audio) return audio;
