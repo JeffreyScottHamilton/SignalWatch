@@ -1,0 +1,45 @@
+:root {
+  --page: #f3f0e8;
+  --ink: #181a18;
+  --console: #252724;
+  --accent: #ed641d;
+  --console-text: #f7f3ea;
+  --muted: #55584f;
+  --console-muted: #b9b6ab;
+
+  --rule: var(--ink);
+  --rule-soft: color-mix(in srgb, var(--ink) 55%, var(--page));
+  --console-rule: color-mix(in srgb, var(--console-text) 55%, var(--console));
+  --console-tick: color-mix(in srgb, var(--console-text) 85%, var(--console));
+  --console-track: color-mix(in srgb, var(--console-text) 35%, var(--console));
+  --console-sheen: color-mix(in srgb, var(--console-text) 1.5%, transparent);
+  --console-hover: color-mix(in srgb, var(--console-text) 10%, transparent);
+  --screw: color-mix(in srgb, var(--console-text) 45%, var(--console));
+  --screw-slot: color-mix(in srgb, var(--ink) 80%, var(--console));
+
+  /* Focus rings: ink on ivory, warm white on charcoal (both well above 3:1). */
+  --focus: var(--ink);
+
+  --font-display: 'Poppins', 'Inter Variable', system-ui, sans-serif;
+  --font-body: 'Inter Variable', system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+  --radius-sm: 4px;
+  --radius: 6px;
+  --radius-lg: 8px;
+
+  --gutter: 56px;
+  --max-width: 1360px;
+  --ease: 150ms ease;
+}
+
+@media (max-width: 1023px) {
+  :root {
+    --gutter: 30px;
+  }
+}
+
+@media (max-width: 599px) {
+  :root {
+    --gutter: 18px;
+  }
+}
