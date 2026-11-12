@@ -1195,3 +1195,12 @@ svg {
     scroll-behavior: auto !important;
   }
 }
+
+/* Keep "Police · Fire · EMS" on one line; the row's flex wrap moves it whole. */
+.station-row__services {
+  white-space: nowrap;
+}
+
+.station-row__name {
+  min-height: 44px;
+}
